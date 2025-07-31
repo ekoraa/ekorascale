@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ekora Scale</title>
+<style>
+    :root {
+      --bg: #F9FAFB;
+      --primary: #BFD8D2;
+      --secondary: #D7CCC8;
+      --hero: #EDEDED;
+      --text: #2E2E2E;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      overflow-y: hidden;
+    }
+
+    header {
+      background-color: var(--primary);
+      padding: 20px;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+
+    header h1 a {
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      height: 100vh;
+      background-color: var(--hero);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.1em;
+      max-width: 600px;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    section img.main {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .gif-decor {
+      width: 100px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 12px;
+    }
+
+    .icon-row {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+
+    .icon-row img {
+      width: 50px;
+      height: 50px;
+      opacity: 0.7;
+    }
+
+    footer {
+      background-color: var(--primary);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: var(--text);
+    }
+
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    form input, form textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    form button {
+      padding: 10px;
+      background-color: var(--text);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    form button:hover {
+      background-color: #444;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5em;
+      }
+
+      nav a {
+        display: block;
+        margin: 5px 0;
+      }
+
+      .hero h2 {
+        font-size: 1.5em;
+      }
+
+      .icon-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  </style>
+<style>
+
+#email-animation {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 64px;
+  height: 64px;
+  z-index: 9999;
+  opacity: 1;
+  transition: all 2s ease-in-out;
+}
+
+#email-animation.hide {
+  opacity: 0;
+  transform: scale(0.2) translate(100px, 100px);
+}
+</style>
+<script>
+    function unlockScroll() {
+      document.body.style.overflowY = 'auto';
+    }
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<audio id="successSound" muted="" playsinline="" preload="auto" src="https://notificationsounds.com/storage/sounds/file-sounds-1151-plucky.mp3"></audio>
+
+<style>
+@keyframes foldAway {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(200%, 200%) scale(0.1) rotate(15deg);
+  }
+}
+
+.success-message {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d1fae5;
+  color: #065f46;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 9999;
+}
+</style>
+<style>
+
+#email-animation {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 64px;
+  height: 64px;
+  z-index: 9999;
+  opacity: 1;
+  transition: all 2s ease-in-out;
+}
+
+#email-animation.hide {
+  opacity: 0;
+  transform: scale(0.2) translate(100px, 100px);
+}
+</style>
+
+</head>
+<body>
+<header>
+<h1><a href="#home" onclick="unlockScroll()">Ekora Scale</a></h1>
+<nav>
+<a href="#oque-fazemos" onclick="unlockScroll()">O que fazemos</a>
+<a href="#nossa-historia" onclick="unlockScroll()">Nossa história</a>
+<a href="#contato" onclick="unlockScroll()">Contato</a>
+</nav>
+</header>
+<div class="hero" id="home">
+<h2>Bem-vindo à Ekora Scale</h2>
+<p>Alfredo e Josephe, de Belo Horizonte, criaram a Ekora para fazer micro marcas e influenciadores crescerem de verdade. Clique nas abas acima e descubra como!</p>
+<div class="icon-row">
+<img alt="Coração" src="https://cdn-icons-png.flaticon.com/512/2950/2950661.png"/>
+<img alt="Foguete" src="https://cdn-icons-png.flaticon.com/512/2343/2343787.png"/>
+<img alt="Lâmpada" src="https://cdn-icons-png.flaticon.com/512/190/190411.png"/>
+</div>
+</div>
+<section id="oque-fazemos">
+<h2>O que a gente faz por você</h2>
+<img alt="Engrenagens" class="gif-decor" src="https://i.imgur.com/MK3mpZw.gif"/>
+<p>Ajudamos marcas pequenas e influenciadores iniciantes a escalar com propósito. Fazemos parceria de verdade — com comissão, pagamento inicial e estratégia.</p>
+<img alt="Marketing digital" class="main" src="https://cdn.pixabay.com/photo/2018/01/08/07/48/startup-3062481_1280.jpg"/>
+</section>
+<section id="nossa-historia">
+<h2>Como tudo começou</h2>
+<img alt="Ideia nascendo" class="gif-decor" src="https://i.imgur.com/pbUjAkO.gif"/>
+<p>Dois amigos de BH, uma ideia na cabeça e vontade de fazer diferente. A Ekora nasceu pra dar oportunidade a quem tem talento, mas não tem apoio. Hoje, somos ponte entre sonhos e resultados.</p>
+<img alt="Nossa equipe" class="main" src="https://cdn.pixabay.com/photo/2016/11/29/02/04/meeting-1869513_1280.jpg"/>
+</section>
+<footer id="contato">
+<h2>Entre em contato</h2>
+<p>📧 ekorascalee@gmail.com</p>
+<p>📍 Belo Horizonte, Brasil</p>
+<form onsubmit="sendEmail(event)">
+<input name="nome" placeholder="Seu nome" required="" type="text"/>
+<input name="email" placeholder="Seu e-mail" required="" type="email"/>
+<textarea name="mensagem" placeholder="Sua mensagem..." required="" rows="4"></textarea>
+<button type="submit">Enviar mensagem</button>
+</form>
+<p style="margin-top: 20px;">© 2025 Ekora Scale — Feito com carinho por Alfredo &amp; Josephe</p>
+</footer>
+<script>
+function sendEmail(e) {
+  e.preventDefault();
+  emailjs.sendForm('service_wr6bhlk', 'template_l4m2xd8', e.target)
+    .then(function() {
+      e.target.reset();
+
+      const sound = document.getElementById("successSound");
+      if (sound) {
+        sound.muted = false;
+        sound.play();
+      }
+
+      const gif = document.createElement("img");
+      gif.id = "email-animation";
+      gif.src = "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif";
+      gif.alt = "Enviado";
+      gif.style.position = "fixed";
+      gif.style.bottom = "20px";
+      gif.style.right = "20px";
+      gif.style.width = "64px";
+      gif.style.height = "64px";
+      gif.style.zIndex = "9999";
+      gif.style.opacity = "1";
+      gif.style.transition = "all 2s ease-in-out";
+      document.body.appendChild(gif);
+
+      setTimeout(() => {
+        gif.classList.add("hide");
+      }, 3000);
+
+      setTimeout(() => {
+        gif.remove();
+      }, 5500);
+    }, function(error) {
+      console.error('Erro ao enviar:', error);
+    });
+}
+</script></body>
+</html>
